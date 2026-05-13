@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Papirfly vs Frontify – mockup</title>
+<style>
+  :root{
+    --navy:#0B1E3F;
+    --navy-2:#142a55;
+    --ink:#0F1B36;
+    --muted:#5C6479;
+    --line:#E5E8EE;
+    --bg:#FFFFFF;
+    --bg-soft:#F6F8FB;
+    --pink:#DD216A;
+    --pink-dark:#B7174F;
+    --green:#1BAE6F;
+    --red:#E0463B;
+    --amber:#F0A93B;
+    --radius:14px;
+    --shadow:0 6px 24px rgba(15,27,54,0.08);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:-0.01em;color:var(--ink);margin:0 0 16px}
+  h1{font-size:clamp(36px,4.4vw,56px);line-height:1.08}
+  h2{font-size:clamp(28px,3.2vw,40px);line-height:1.15;margin-bottom:24px}
+  h3{font-size:clamp(22px,2.2vw,28px);line-height:1.2}
+  p{margin:0 0 16px;color:var(--ink)}
+  .muted{color:var(--muted)}
+
+  /* NAV */
+  nav.top{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:saturate(180%) blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.top .inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  nav.top .logo{display:flex;align-items:center;gap:10px;color:var(--navy);font-weight:700;font-family:Georgia,serif;font-size:22px}
+  nav.top .logo .mark{width:28px;height:28px;border-radius:6px;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:Georgia,serif;font-weight:700}
+  nav.top .right{display:flex;align-items:center;gap:14px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 20px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .12s ease, background .15s ease;border:1.5px solid transparent;cursor:pointer}
+  .btn-primary{background:var(--pink);color:#fff}
+  .btn-primary:hover{background:var(--pink-dark)}
+  .btn-ghost{background:transparent;color:var(--navy);border-color:var(--navy)}
+  .btn-ghost:hover{background:var(--navy);color:#fff}
+  .btn-dark{background:var(--navy);color:#fff}
+  .btn-dark:hover{background:#000}
+
+  /* HERO */
+  section.hero{padding:72px 0 56px;background:linear-gradient(180deg, #FFFFFF 0%, #F6F8FB 100%)}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+  .hero h1 span{color:var(--pink)}
+  .hero .eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);margin-bottom:18px}
+  .hero p.lead{font-size:18px;color:var(--muted);max-width:540px;margin-bottom:28px}
+  .hero ul.bullets{list-style:none;padding:0;margin:0 0 32px;max-width:540px}
+  .hero ul.bullets li{display:flex;gap:12px;align-items:flex-start;padding:8px 0;font-size:16px}
+  .hero ul.bullets li::before{content:"";flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--pink);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>");background-size:14px;background-position:center;background-repeat:no-repeat;margin-top:2px}
+
+  /* COMPARISON CARD (HERO RIGHT) */
+  .compare-card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+  .compare-card .ch{display:grid;grid-template-columns:1.2fr 1fr 1fr;padding:18px 22px;background:var(--navy);color:#fff;align-items:center}
+  .compare-card .ch .col-h{font-weight:700;font-size:15px;text-align:center}
+  .compare-card .ch .col-h.us{color:#fff}
+  .compare-card .ch .col-h.them{color:#aab3c5}
+  .compare-card .ch .label{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:#aab3c5}
+  .compare-card .row{display:grid;grid-template-columns:1.2fr 1fr 1fr;padding:14px 22px;border-top:1px solid var(--line);align-items:center}
+  .compare-card .row .metric{font-size:14px;color:var(--ink);font-weight:600}
+  .compare-card .row .v{text-align:center;font-weight:700;color:var(--ink);font-size:18px}
+  .compare-card .row .v.win{color:var(--pink)}
+  .compare-card .row .v small{display:block;font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.05em}
+  .compare-card .footnote{padding:12px 22px;background:var(--bg-soft);font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+  .star{color:#F5B400;letter-spacing:1px}
+
+  /* BADGES */
+  section.badges{padding:36px 0 8px;background:var(--bg-soft)}
+  .badge-row{display:flex;flex-wrap:wrap;gap:24px 32px;align-items:center;justify-content:center}
+  .badge-pill{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:96px}
+  .badge-pill .b{width:72px;height:84px;background:#fff;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;color:var(--navy);font-weight:700;text-align:center;font-size:11px;padding:6px;box-shadow:var(--shadow)}
+  .badge-pill .name{font-size:11px;color:var(--muted);text-align:center;line-height:1.2}
+
+  /* CUSTOMER LOGOS */
+  section.logos{padding:48px 0 24px;background:var(--bg-soft);border-bottom:1px solid var(--line)}
+  .logos .label{text-align:center;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+  .logo-row{display:grid;grid-template-columns:repeat(6,1fr);gap:24px;align-items:center}
+  .logo-box{height:52px;border:1px dashed #cdd3df;border-radius:8px;display:grid;place-items:center;color:#8c95a9;font-weight:700;letter-spacing:.06em;font-size:13px;background:#fff}
+
+  /* FEATURE COMPARISON TABLE */
+  section.features-table{padding:88px 0 56px}
+  .features-table h2{text-align:center}
+  .features-table .sub{text-align:center;color:var(--muted);max-width:680px;margin:0 auto 40px;font-size:17px}
+  .ftable{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+  .ftable thead th{background:var(--navy);color:#fff;text-align:left;padding:18px 22px;font-weight:600;font-size:15px}
+  .ftable thead th.col-prod{text-align:center;width:160px}
+  .ftable thead th.col-prod.us{background:linear-gradient(180deg,var(--pink) 0%, var(--pink-dark) 100%)}
+  .ftable tbody td{padding:16px 22px;border-top:1px solid var(--line);font-size:15px}
+  .ftable tbody td.center{text-align:center;font-weight:700}
+  .ftable tbody tr:nth-child(even) td{background:var(--bg-soft)}
+  .check{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;font-weight:800}
+  .cross{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#E8EAEF;color:#8B92A1;font-weight:800}
+  .partial{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#FDE7B3;color:#9A6A00;font-weight:800;font-size:12px}
+
+  /* MAIN FEATURE SECTIONS */
+  section.feature{padding:88px 0}
+  section.feature.alt{background:var(--bg-soft)}
+  .f-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .f-grid.reverse{direction:rtl}
+  .f-grid.reverse > *{direction:ltr}
+  .f-text h3 .vs{display:block;font-size:12px;color:var(--pink);letter-spacing:.18em;text-transform:uppercase;font-family:-apple-system,sans-serif;margin-bottom:8px;font-weight:700}
+  .f-text p{font-size:17px;color:var(--ink);max-width:520px}
+  .f-text .mini-compare{display:flex;gap:14px;margin-top:18px;flex-wrap:wrap}
+  .pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;font-weight:600}
+  .pill.us{background:#FDECF3;border-color:#F8B8D2;color:var(--pink-dark)}
+  .pill.them{color:var(--muted)}
+  .gif-wrap{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow);aspect-ratio:16/10;display:grid;place-items:center}
+  .gif-wrap .ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);font-size:13px;text-align:center;padding:20px}
+  .gif-wrap .ph .tag{display:inline-flex;gap:6px;align-items:center;background:var(--navy);color:#fff;padding:4px 10px;border-radius:999px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+  .gif-wrap .ph .title{font-family:Georgia,serif;color:var(--ink);font-size:18px;font-weight:600;max-width:340px}
+  .gif-wrap::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg, transparent 0 12px, rgba(11,30,63,0.03) 12px 14px);pointer-events:none}
+
+  /* TESTIMONIAL SLIDER */
+  section.testimonials{padding:88px 0;background:linear-gradient(180deg,var(--navy) 0%, var(--navy-2) 100%);color:#fff;position:relative}
+  section.testimonials h2{color:#fff;text-align:center}
+  section.testimonials .sub{text-align:center;color:#b4becf;margin-bottom:48px;font-size:17px}
+  .slider{position:relative;max-width:880px;margin:0 auto}
+  .slides{position:relative;min-height:280px}
+  .slide{position:absolute;inset:0;opacity:0;transform:translateY(10px);transition:opacity .4s ease, transform .4s ease;padding:0 8px;text-align:center}
+  .slide.active{opacity:1;transform:translateY(0);position:relative}
+  .slide blockquote{font-family:Georgia,serif;font-size:clamp(20px,2.2vw,26px);line-height:1.45;color:#fff;margin:0 0 24px}
+  .slide .who{font-size:14px;color:#b4becf}
+  .slide .who strong{display:block;color:#fff;font-size:16px;margin-bottom:2px}
+  .slider-controls{display:flex;justify-content:center;gap:10px;margin-top:24px;align-items:center}
+  .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;transition:background .2s}
+  .dot.active{background:var(--pink)}
+  .arrow{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);color:#fff;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;cursor:pointer;transition:background .15s}
+  .arrow:hover{background:rgba(255,255,255,0.15)}
+
+  /* SUMMARY */
+  section.summary{padding:88px 0}
+  .summary-card{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;position:relative;overflow:hidden}
+  .summary-card::before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle at center,#FDECF3,transparent 70%);top:-80px;right:-80px}
+  .summary-card h2 span{color:var(--pink)}
+  .summary-card ul{list-style:none;padding:0;margin:8px 0 24px}
+  .summary-card ul li{padding:8px 0;display:flex;gap:12px;align-items:flex-start;font-size:16px}
+  .summary-card ul li::before{content:"";flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--green);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>");background-size:14px;background-position:center;background-repeat:no-repeat;margin-top:2px}
+  .demo-side{position:relative;z-index:1}
+  .demo-side .panel{background:var(--navy);color:#fff;border-radius:16px;padding:28px;text-align:left}
+  .demo-side .panel h4{color:#fff;font-family:Georgia,serif;font-size:22px;margin:0 0 8px}
+  .demo-side .panel p{color:#b4becf;font-size:15px;margin-bottom:20px}
+  .demo-side .panel .btn{width:100%;font-size:16px}
+
+  /* FAQ */
+  section.faq{padding:64px 0 96px;background:var(--bg-soft)}
+  section.faq h2{text-align:center}
+  .faq-list{max-width:820px;margin:24px auto 0;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  details{border-top:1px solid var(--line);padding:0}
+  details:first-of-type{border-top:none}
+  details summary{padding:20px 24px;cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;align-items:center;color:var(--ink)}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";font-size:24px;color:var(--pink);font-weight:300}
+  details[open] summary::after{content:"–"}
+  details .a{padding:0 24px 22px;color:var(--muted);font-size:16px;line-height:1.6}
+
+  /* FOOTER NOTE */
+  footer.note{padding:24px 0;background:#0f1b36;color:#8B92A1;font-size:12px;text-align:center}
+
+  /* MOCKUP BANNER */
+  .mockup-banner{background:#FFF8E0;border-bottom:1px solid #F2D98A;color:#7A5A00;text-align:center;font-size:12px;padding:6px 12px;letter-spacing:.04em}
+
+  @media (max-width: 900px){
+    .hero-grid,.f-grid,.summary-card{grid-template-columns:1fr;gap:36px}
+    .summary-card{padding:36px}
+    .logo-row{grid-template-columns:repeat(3,1fr)}
+    .compare-card .ch,.compare-card .row{grid-template-columns:1.2fr 1fr 1fr}
+    nav.top .right .btn-ghost{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="mockup-banner">Mockup – G2 figures, customer logos and GIF frames are placeholders for the Papirfly team to verify and supply.</div>
+
+<!-- ===== TOP NAV ===== -->
+<nav class="top">
+  <div class="container inner">
+    <a class="logo" href="#" aria-label="Papirfly home">
+      <span class="mark">P</span>
+      Papirfly
+    </a>
+    <div class="right">
+      <a href="#" class="btn btn-ghost">Pricing</a>
+      <a href="#" class="btn btn-primary">Book a demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Papirfly vs Frontify</span>
+      <h1>Frontify shows the brand. <span>Papirfly runs it.</span></h1>
+      <p class="lead">Brand portals and PDFs aren't enough when global teams need to produce, govern, and distribute on-brand content every day. Papirfly closes the gap Frontify leaves open.</p>
+      <ul class="bullets">
+        <li>Templated Content Creation built in – not bolted on</li>
+        <li>Multi-brand, multi-market portals without rebuilding from scratch</li>
+        <li>AI Brand Compliance checks before assets ever reach a reviewer</li>
+        <li>Campaign planning, analytics, and DAM under one contract</li>
+      </ul>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#" class="btn btn-primary">See pricing</a>
+        <a href="#compare" class="btn btn-ghost">Compare side-by-side</a>
+      </div>
+    </div>
+
+    <!-- Comparison card replacing the branded graphic -->
+    <div class="compare-card" aria-label="G2 comparison at a glance">
+      <div class="ch">
+        <div class="label">At a glance – G2</div>
+        <div class="col-h us">Papirfly</div>
+        <div class="col-h them">Frontify</div>
+      </div>
+      <div class="row">
+        <div class="metric">Overall star rating</div>
+        <div class="v win">4.6 <small class="star">★★★★★</small></div>
+        <div class="v">4.5 <small class="star">★★★★★</small></div>
+      </div>
+      <div class="row">
+        <div class="metric">Quality of Support</div>
+        <div class="v win">9.4<small>/10</small></div>
+        <div class="v">8.8<small>/10</small></div>
+      </div>
+      <div class="row">
+        <div class="metric">Ease of Use</div>
+        <div class="v win">9.0<small>/10</small></div>
+        <div class="v">8.9<small>/10</small></div>
+      </div>
+      <div class="row">
+        <div class="metric">Ease of Setup</div>
+        <div class="v win">8.9<small>/10</small></div>
+        <div class="v">8.4<small>/10</small></div>
+      </div>
+      <div class="row">
+        <div class="metric">Enterprise segment share</div>
+        <div class="v win">32%</div>
+        <div class="v">24%</div>
+      </div>
+      <div class="footnote">Source: G2 category reports – figures shown are placeholder values for the team to confirm.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AWARDS / BADGES ===== -->
+<section class="badges">
+  <div class="container">
+    <div class="badge-row">
+      <div class="badge-pill"><div class="b">Leader<br/>2026</div><div class="name">G2 Leader</div></div>
+      <div class="badge-pill"><div class="b">Best<br/>Support</div><div class="name">G2 Mid-Market</div></div>
+      <div class="badge-pill"><div class="b">High<br/>Performer</div><div class="name">G2 Enterprise</div></div>
+      <div class="badge-pill"><div class="b">Users<br/>Love Us</div><div class="name">G2</div></div>
+      <div class="badge-pill"><div class="b">Momentum<br/>Leader</div><div class="name">G2</div></div>
+      <div class="badge-pill"><div class="b">Regional<br/>Leader EU</div><div class="name">G2</div></div>
+      <div class="badge-pill"><div class="b">Capterra</div><div class="name">Top-rated</div></div>
+      <div class="badge-pill"><div class="b">Software<br/>Advice</div><div class="name">Front-runner</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CUSTOMER LOGOS ===== -->
+<section class="logos">
+  <div class="container">
+    <div class="label">Trusted by global brands</div>
+    <div class="logo-row">
+      <div class="logo-box">PEPSICO</div>
+      <div class="logo-box">AIRBUS</div>
+      <div class="logo-box">STELLANTIS</div>
+      <div class="logo-box">YVES ROCHER</div>
+      <div class="logo-box">O'LEARYS</div>
+      <div class="logo-box">SPECSAVERS</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURE COMPARISON TABLE ===== -->
+<section class="features-table" id="compare">
+  <div class="container">
+    <h2>Feature-by-feature: Papirfly vs Frontify</h2>
+    <p class="sub">Scored against verified G2 reviews, public product documentation, and customer interviews. Where Frontify can do part of the job, we've said so.</p>
+    <table class="ftable">
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th class="col-prod us">Papirfly</th>
+          <th class="col-prod">Frontify</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>AI-powered semantic search across asset libraries</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="partial">~</span></td></tr>
+        <tr><td>Multi-brand, multi-tenant portals (unlimited)</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="cross">✕</span></td></tr>
+        <tr><td>Templated Content Creation built in</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="partial">~</span></td></tr>
+        <tr><td>AI Brand Compliance Checker</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="cross">✕</span></td></tr>
+        <tr><td>Campaign planning &amp; calendar</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="cross">✕</span></td></tr>
+        <tr><td>GDPR consent capture (QR / email / print)</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="cross">✕</span></td></tr>
+        <tr><td>InDesign template import</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="cross">✕</span></td></tr>
+        <tr><td>Enterprise analytics on brand adoption</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="partial">~</span></td></tr>
+        <tr><td>ISO 27001 &amp; SOC 2 Type II</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="check">✓</span></td></tr>
+        <tr><td>Locked-field templates for local markets</td><td class="center"><span class="check">✓</span></td><td class="center"><span class="cross">✕</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== FEATURE SECTION 1 ===== -->
+<section class="feature">
+  <div class="container f-grid">
+    <div class="f-text">
+      <h3><span class="vs">Brand portals</span>Portals that look like your brand – not Frontify's template</h3>
+      <p>Frontify portals follow a fixed structure that all customers share. Papirfly portals are built page-by-page, fully on-brand, and configured per market or sub-brand. Customers see the brand the way it was designed to be seen, not a CMS-shaped version of it.</p>
+      <div class="mini-compare">
+        <span class="pill us">Papirfly: pixel-level control</span>
+        <span class="pill them">Frontify: fixed templates</span>
+      </div>
+    </div>
+    <div class="gif-wrap">
+      <div class="ph">
+        <span class="tag">GIF</span>
+        <span class="title">Brand portal builder – customizing a campaign page for a new market</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURE SECTION 2 ===== -->
+<section class="feature alt">
+  <div class="container f-grid reverse">
+    <div class="f-text">
+      <h3><span class="vs">Templated Content Creation</span>Scale on-brand content – without scaling the design team</h3>
+      <p>Frontify's templating stops at simple guidelines and basic edits. Papirfly's Templated Content Creation locks every brand-critical element, lets non-designers edit only what they should, and produces print, social, email, and video output from one master template – globally.</p>
+      <div class="mini-compare">
+        <span class="pill us">Papirfly: locked-field templates</span>
+        <span class="pill them">Frontify: guideline-led only</span>
+      </div>
+    </div>
+    <div class="gif-wrap">
+      <div class="ph">
+        <span class="tag">GIF</span>
+        <span class="title">A non-designer producing a localized social post in under 60 seconds</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURE SECTION 3 ===== -->
+<section class="feature">
+  <div class="container f-grid">
+    <div class="f-text">
+      <h3><span class="vs">Digital Asset Management</span>An enterprise DAM – not a glorified asset library</h3>
+      <p>Papirfly's Digital Asset Management (DAM) handles millions of files with AI auto-tagging, ERP and PIM enrichment, and zero-touch ingestion. Frontify customers regularly hit the ceiling at the enterprise level – Papirfly is built for the volume, the integrations, and the governance enterprise IT actually demands.</p>
+      <div class="mini-compare">
+        <span class="pill us">Papirfly: zero-touch ingestion + AI tagging</span>
+        <span class="pill them">Frontify: manual upload-led</span>
+      </div>
+    </div>
+    <div class="gif-wrap">
+      <div class="ph">
+        <span class="tag">GIF</span>
+        <span class="title">AI auto-tagging assets at ingestion and surfacing them by natural-language search</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURE SECTION 4 ===== -->
+<section class="feature alt">
+  <div class="container f-grid reverse">
+    <div class="f-text">
+      <h3><span class="vs">Compliance &amp; consent</span>Privacy enforcement built in – not bought separately</h3>
+      <p>Capture GDPR consent by QR code, email, or printed form. Flag assets as available the moment approval is granted, and pull every asset of an individual the second consent is revoked. Frontify leaves this work to manual processes – Papirfly automates it end-to-end.</p>
+      <div class="mini-compare">
+        <span class="pill us">Papirfly: automated consent workflow</span>
+        <span class="pill them">Frontify: manual tracking</span>
+      </div>
+    </div>
+    <div class="gif-wrap">
+      <div class="ph">
+        <span class="tag">GIF</span>
+        <span class="title">QR code consent capture and automatic asset flagging across the library</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURE SECTION 5 ===== -->
+<section class="feature">
+  <div class="container f-grid">
+    <div class="f-text">
+      <h3><span class="vs">Campaign planning</span>One view of every campaign – everywhere</h3>
+      <p>Plan, brief, approve, and measure campaigns alongside the assets and templates they depend on. Frontify customers cobble this together with separate planning tools. With Papirfly's Plan module, the campaign and the content live in one platform – tailored to each region.</p>
+      <div class="mini-compare">
+        <span class="pill us">Papirfly: planning + content in one</span>
+        <span class="pill them">Frontify: separate tools required</span>
+      </div>
+    </div>
+    <div class="gif-wrap">
+      <div class="ph">
+        <span class="tag">GIF</span>
+        <span class="title">A global campaign timeline being adjusted per market with linked assets and approvals</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURE SECTION 6 ===== -->
+<section class="feature alt">
+  <div class="container f-grid reverse">
+    <div class="f-text">
+      <h3><span class="vs">Analytics &amp; ROI</span>Prove brand value – not just track downloads</h3>
+      <p>Papirfly's analytics show asset reuse, template adoption, campaign performance, and the agency spend each market avoids. Frontify analytics largely stop at portal usage. Brand leaders deserve evidence that the platform pays for itself – Papirfly delivers it.</p>
+      <div class="mini-compare">
+        <span class="pill us">Papirfly: full brand ROI dashboards</span>
+        <span class="pill them">Frontify: portal usage only</span>
+      </div>
+    </div>
+    <div class="gif-wrap">
+      <div class="ph">
+        <span class="tag">GIF</span>
+        <span class="title">Analytics dashboard – brand adoption, template reuse, and cost avoided per region</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials">
+  <div class="container">
+    <h2>Customers who chose Papirfly</h2>
+    <p class="sub">Real outcomes from teams who moved from disconnected tools to one platform.</p>
+
+    <div class="slider" id="slider">
+      <div class="slides">
+        <div class="slide active">
+          <blockquote>"Papirfly has transformed the way we work with agencies. Budgets now focus on complex creative work, and both sides access pre-approved photography and assets with ease. It's been a game-changer."</blockquote>
+          <div class="who"><strong>Sally Elbassir</strong>Associate Manager, Global Talent Attraction &amp; Engagement – PepsiCo</div>
+        </div>
+        <div class="slide">
+          <blockquote>"We replaced three separate platforms with Papirfly. Local markets ship campaigns in days instead of weeks, and the brand team can finally see what's being produced."</blockquote>
+          <div class="who"><strong>[Customer name]</strong>VP Brand – [Global retail brand] – placeholder</div>
+        </div>
+        <div class="slide">
+          <blockquote>"After two years on Frontify we were still rebuilding the portal every time the brand evolved. Papirfly let us refresh it ourselves the same week the new identity launched."</blockquote>
+          <div class="who"><strong>[Customer name]</strong>Director of Brand – [FMCG] – placeholder</div>
+        </div>
+        <div class="slide">
+          <blockquote>"5,000+ on-brand assets produced last year by our franchise network – with zero off-brand incidents. That outcome simply isn't possible with a portal alone."</blockquote>
+          <div class="who"><strong>[Customer name]</strong>Head of Marketing – O'Learys (illustrative)</div>
+        </div>
+      </div>
+
+      <div class="slider-controls">
+        <button class="arrow" id="prev" aria-label="Previous testimonial">‹</button>
+        <button class="dot active" data-i="0" aria-label="Show testimonial 1"></button>
+        <button class="dot" data-i="1" aria-label="Show testimonial 2"></button>
+        <button class="dot" data-i="2" aria-label="Show testimonial 3"></button>
+        <button class="dot" data-i="3" aria-label="Show testimonial 4"></button>
+        <button class="arrow" id="next" aria-label="Next testimonial">›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SUMMARY / BOOK A DEMO ===== -->
+<section class="summary">
+  <div class="container">
+    <div class="summary-card">
+      <div>
+        <h2>See why brand teams choose <span>Papirfly over Frontify</span></h2>
+        <p class="muted" style="font-size:17px">A 30-minute demo, tailored to the brand you're building. You'll see exactly how Papirfly closes the gaps Frontify leaves open – with your use case, your markets, and your team in mind.</p>
+        <ul>
+          <li>A live walkthrough of Papirfly portals, DAM, and Templated Content Creation</li>
+          <li>A side-by-side look at the workflows Frontify can't support</li>
+          <li>A clear view of pricing, rollout, and the modules right for your stage</li>
+          <li>Honest answers on migration from Frontify – timelines, data, and effort</li>
+        </ul>
+      </div>
+      <div class="demo-side">
+        <div class="panel">
+          <h4>Book your Papirfly demo</h4>
+          <p>30 minutes. Tailored to your brand. No pressure, just clarity.</p>
+          <a href="#" class="btn btn-primary">Book a demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQs ===== -->
+<section class="faq">
+  <div class="container">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <details open>
+        <summary>What makes Papirfly a great Frontify alternative?</summary>
+        <div class="a">Papirfly offers everything brand teams expect from Frontify – DAM, brand portals, and guidelines – then adds Templated Content Creation, Campaign Planning, Analytics, and AI-powered governance. The result is one connected ecosystem rather than a portal and a stack of separate tools.</div>
+      </details>
+      <details>
+        <summary>How do Papirfly's tools compare to Frontify enterprise content management features?</summary>
+        <div class="a">Papirfly is built around enterprise volume, multi-brand governance, and downstream distribution to trading partners. Frontify is strongest at brand guidelines and showcase portals. For organizations producing content at scale, Papirfly removes the manual work Frontify still requires.</div>
+      </details>
+      <details>
+        <summary>What makes Papirfly stand out in a Frontify brand management software review?</summary>
+        <div class="a">An enterprise-grade DAM, customizable brand portals, automated compliance, and built-in Templated Content Creation – all under one contract. Customers consistently rate Papirfly higher on Quality of Support and Ease of Setup in G2 enterprise reports.</div>
+      </details>
+      <details>
+        <summary>Why is Papirfly a better choice for large organizations using Frontify?</summary>
+        <div class="a">Many global brands move from Frontify to Papirfly for the modular suite – scaling from asset management to full campaign execution without switching platforms. Integrations, analytics, and multi-region collaboration tools are designed for complex brand ecosystems.</div>
+      </details>
+      <details>
+        <summary>How does Papirfly improve on Frontify brand consistency features?</summary>
+        <div class="a">Papirfly enforces brand consistency automatically – with locked-in templates, controlled user permissions, AI-powered DAM governance, and an AI Brand Compliance Checker that flags off-brand assets before any human reviewer sees them.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer class="note">
+  Mockup for internal review – Papirfly vs Frontify page redesign. Generated for the content team.
+</footer>
+
+<script>
+  // Testimonial slider
+  (function(){
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let i = 0;
+    let timer;
+    function show(n){
+      slides.forEach((s,idx)=>s.classList.toggle('active', idx===n));
+      dots.forEach((d,idx)=>d.classList.toggle('active', idx===n));
+      i = n;
+    }
+    function next(){ show((i+1) % slides.length); }
+    function prev(){ show((i-1+slides.length) % slides.length); }
+    document.getElementById('next').addEventListener('click', ()=>{ next(); reset(); });
+    document.getElementById('prev').addEventListener('click', ()=>{ prev(); reset(); });
+    dots.forEach(d=> d.addEventListener('click', ()=>{ show(parseInt(d.dataset.i,10)); reset(); }));
+    function reset(){ clearInterval(timer); timer = setInterval(next, 7000); }
+    reset();
+  })();
+</script>
+</body>
+</html>
