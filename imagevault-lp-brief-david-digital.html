@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ImageVault LP Brief — David Digital revision</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --ink-soft: #4a4a6a;
+    --ink-faint: #8888aa;
+    --paper: #f8f7f4;
+    --paper-warm: #f0ede6;
+    --accent: #4f46e5;
+    --accent-light: #e0deff;
+    --green: #16a34a;
+    --green-light: #dcfce7;
+    --amber: #b45309;
+    --amber-light: #fef3c7;
+    --red: #dc2626;
+    --red-light: #fee2e2;
+    --border: #e2dfd8;
+    --rule: #d4d0c8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── Page header ── */
+  .doc-header {
+    background: var(--ink);
+    color: white;
+    padding: 48px 60px 40px;
+    border-bottom: 3px solid var(--accent);
+  }
+
+  .doc-header .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9999cc;
+    margin-bottom: 12px;
+  }
+
+  .doc-header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.15;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .doc-header .subtitle {
+    font-size: 15px;
+    color: #aaaacc;
+    font-weight: 300;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .meta-pill {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: 1px solid #3a3a5e;
+    color: #ccccee;
+  }
+
+  .meta-pill.highlight {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  /* ── Context bar ── */
+  .context-bar {
+    background: var(--accent-light);
+    border-bottom: 1px solid #c4bfff;
+    padding: 14px 60px;
+    font-size: 13px;
+    color: #3730a3;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .context-bar strong { font-weight: 600; }
+
+  /* ── Main layout ── */
+  .doc-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 60px 80px;
+  }
+
+  /* ── Section blocks ── */
+  .section {
+    margin-bottom: 56px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── Copy block (the main unit) ── */
+  .copy-block {
+    display: grid;
+    grid-template-columns: 220px 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    background: white;
+  }
+
+  .copy-block.two-col {
+    grid-template-columns: 220px 1fr;
+  }
+
+  .col-label {
+    background: var(--paper-warm);
+    border-right: 1px solid var(--border);
+    padding: 20px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .col-label .constraint {
+    font-weight: 400;
+    color: var(--ink-faint);
+    font-size: 11px;
+    margin-top: 4px;
+    display: block;
+  }
+
+  .col-original {
+    border-right: 1px solid var(--border);
+    padding: 20px 18px;
+    background: white;
+  }
+
+  .col-revised {
+    padding: 20px 18px;
+    background: #fafffe;
+  }
+
+  .col-header {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .col-original .col-header { color: var(--ink-faint); }
+  .col-revised .col-header { color: var(--green); }
+
+  .copy-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+
+  .copy-text.h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+
+  .copy-text.h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .copy-text.h3 {
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .copy-text ul {
+    padding-left: 18px;
+    margin-top: 6px;
+  }
+
+  .copy-text ul li {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  /* ── Char count badge ── */
+  .char-count {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 20px;
+    margin-top: 8px;
+  }
+
+  .char-count.ok { background: var(--green-light); color: var(--green); }
+  .char-count.warn { background: var(--amber-light); color: var(--amber); }
+
+  /* ── Change note ── */
+  .change-note {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #92400e;
+    margin-top: 6px;
+    line-height: 1.55;
+  }
+
+  .change-note strong { font-weight: 600; }
+
+  /* ── Icons grid (4-up) ── */
+  .icons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .icon-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+  }
+
+  .icon-card-header {
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .icon-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .icon-col {
+    padding: 14px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .icon-col:first-child {
+    border-right: 1px solid var(--border);
+    color: var(--ink-soft);
+  }
+
+  .icon-col:last-child {
+    background: #fafffe;
+  }
+
+  .icon-col .heading {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  .icon-col .original-heading {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: var(--ink-faint);
+  }
+
+  /* ── Rationale box ── */
+  .rationale {
+    background: var(--ink);
+    color: #d4d4ee;
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-top: 48px;
+  }
+
+  .rationale h2 {
+    font-family: 'DM Serif Display', serif;
+    color: white;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .rationale-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .rationale-item {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+
+  .rationale-item h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #a5b4fc;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  .rationale-item p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #c4c4dd;
+  }
+
+  /* ── Unchanged marker ── */
+  .unchanged-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: #f0f0f4;
+    color: var(--ink-faint);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Quote block ── */
+  .quotes-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .quote-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: white;
+    overflow: hidden;
+  }
+
+  .quote-card-header {
+    background: var(--paper-warm);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  .quote-card-body {
+    padding: 14px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .quote-card-attribution {
+    padding: 0 14px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    font-style: normal;
+  }
+
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="eyebrow">Landing page brief</div>
+  <h1>ImageVault LP — David Digital revision</h1>
+  <p class="subtitle">Revised copy for a DAM + Brand Portal upgrade narrative, repositioned away from Templated Content Creation</p>
+  <div class="meta-row">
+    <span class="meta-pill highlight">BOFU / High-intent MOFU</span>
+    <span class="meta-pill">Persona: David Digital</span>
+    <span class="meta-pill">Use case: Enterprise DAM + Brand Portal</span>
+    <span class="meta-pill">Competitor: ImageVault</span>
+  </div>
+</header>
+
+<div class="context-bar">
+  <strong>Revision rationale:&nbsp;</strong> The original brief leads with "create, localize, distribute" — a Mark Marketing pitch. David Digital cares about asset findability, governance, a single source of truth, and distribution without manual overhead. All copy below is reframed around those pains. Reference model: the Brandpad LP (<em>papirfly.com/enterprise-brand-management-solution</em>).
+</div>
+
+<div class="doc-body">
+
+  <!-- ═══════════════════════════════ HEADER SECTION ═══════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Header section</div>
+
+    <!-- H1 -->
+    <div class="copy-block">
+      <div class="col-label">
+        H1 headline
+        <span class="constraint">Max 55 characters</span>
+      </div>
+      <div class="col-original">
+        <div class="col-header">Original</div>
+        <div class="copy-text h1">Beyond ImageVault: Meet Papirfly</div>
+        <span class="char-count ok">33 chars</span>
+      </div>
+      <div class="col-revised">
+        <div class="col-header">Revised</div>
+        <div class="copy-text h1">Beyond ImageVault: Meet Papirfly</div>
+        <span class="char-count ok">33 chars</span>
+        <span class="unchanged-badge" style="margin-left:6px">Unchanged — works</span>
+      </div>
+    </div>
+
+    <!-- Intro para -->
+    <div class="copy-block">
+      <div class="col-label">
+        Intro paragraph
+        <span class="constraint">Max 220 chars or 150 chars (1 para). Sentence max 90 chars. Max 3 bullets at 80 chars each.</span>
+      </div>
+      <div class="col-original">
+        <div class="col-header">Original</div>
+        <div class="copy-text">Create, localize, and distribute content faster while maintaining brand consistency across teams, markets, and channels.</div>
+        <span class="char-count ok">118 chars</span>
+        <div class="change-note" style="margin-top:10px"><strong>Issue:</strong> "Create, localize, distribute" is a Localization/Mark Marketing sell. David Digital isn't here for content production — he's here because asset governance is broken.</div>
+      </div>
+      <div class="col-revised">
+        <div class="col-header">Revised</div>
+        <div class="copy-text">ImageVault gets assets organized. Papirfly goes further — combining enterprise Digital Asset Management (DAM) and branded portals so every team finds, governs, and distributes assets faster, with full brand control.</div>
+        <span class="char-count ok">216 chars</span>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="copy-block">
+      <div class="col-label">
+        CTA
+      </div>
+      <div class="col-original">
+        <div class="col-header">Original</div>
+        <div class="copy-text">See what's beyond traditional DAM</div>
+      </div>
+      <div class="col-revised">
+        <div class="col-header">Revised</div>
+        <div class="copy-text">See what's beyond traditional DAM</div>
+        <span class="unchanged-badge" style="margin-top:8px;display:inline-block">Unchanged — still works</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ ICONS SECTION ═══════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Icons section — "Why teams move beyond traditional DAM"</div>
+
+    <!-- H2 + para -->
+    <div class="copy-block">
+      <div class="col-label">
+        H2 + paragraph
+        <span class="constraint">H2 max 55 chars. Para max 200 chars.</span>
+      </div>
+      <div class="col-original">
+        <div class="col-header">Original</div>
+        <div class="copy-text h2">Why teams move beyond traditional DAM</div>
+        <div class="copy-text" style="margin-top:12px">Modern marketing teams need more than asset storage. They need faster content creation, scalable brand governance, and simpler campaign execution.</div>
+        <span class="char-count ok">H2: 38 chars</span>
+      </div>
+      <div class="col-revised">
+        <div class="col-header">Revised</div>
+        <div class="copy-text h2">Why teams move beyond traditional DAM</div>
+        <div class="copy-text" style="margin-top:12px">Modern marketing teams need more than a place to store files. They need faster asset findability, stronger governance, and a single source of truth teams actually use.</div>
+        <span class="char-count ok">H2: 38 chars &nbsp;|&nbsp; Para: 165 chars</span>
+        <div class="change-note" style="margin-top:10px"><strong>Change:</strong> Removed "content creation" and "campaign execution" — those are Localization sells. Replaced with findability, governance, and single source of truth — David Digital's language.</div>
+      </div>
+    </div>
+
+    <!-- 4 icons -->
+    <div class="icons-grid">
+
+      <div class="icon-card">
+        <div class="icon-card-header">
+          Icon 1
+          <span style="font-weight:400;color:#999">Heading max 40 chars · Text max 130 chars</span>
+        </div>
+        <div class="icon-pair">
+          <div class="icon-col">
+            <div class="original-heading">Beyond asset storage</div>
+            <div style="font-size:13px;color:#666;margin-top:2px">Manage assets and create on-brand content in one connected platform.</div>
+            <div style="margin-top:6px"><span class="char-count ok">20 chars heading</span></div>
+          </div>
+          <div class="icon-col">
+            <div class="heading">One source of truth</div>
+            <div style="font-size:13px;color:#333;margin-top:2px">Stop searching across drives and folders. All approved assets, guidelines, and campaigns in one connected hub.</div>
+            <div style="margin-top:6px"><span class="char-count ok">19 chars heading &nbsp;|&nbsp; 108 chars text</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="icon-card">
+        <div class="icon-card-header">
+          Icon 2
+          <span style="font-weight:400;color:#999">Heading max 40 chars · Text max 130 chars</span>
+        </div>
+        <div class="icon-pair">
+          <div class="icon-col">
+            <div class="original-heading">Faster campaign execution</div>
+            <div style="font-size:13px;color:#666;margin-top:2px">Reduce bottlenecks and launch campaigns across markets faster.</div>
+            <div style="margin-top:6px"><span class="char-count ok">25 chars heading</span></div>
+          </div>
+          <div class="icon-col">
+            <div class="heading">AI-powered asset findability</div>
+            <div style="font-size:13px;color:#333;margin-top:2px">Find the right asset in seconds with AI tagging, smart filters, and natural language search.</div>
+            <div style="margin-top:6px"><span class="char-count ok">28 chars heading &nbsp;|&nbsp; 91 chars text</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="icon-card">
+        <div class="icon-card-header">
+          Icon 3
+          <span style="font-weight:400;color:#999">Heading max 40 chars · Text max 130 chars</span>
+        </div>
+        <div class="icon-pair">
+          <div class="icon-col">
+            <div class="original-heading">Built for brand consistency</div>
+            <div style="font-size:13px;color:#666;margin-top:2px">Enable local teams while keeping every asset aligned to brand guidelines.</div>
+            <div style="margin-top:6px"><span class="char-count ok">27 chars heading</span></div>
+          </div>
+          <div class="icon-col">
+            <div class="heading">Built-in brand governance</div>
+            <div style="font-size:13px;color:#333;margin-top:2px">Control access, versioning, and compliance across every team, market, and channel.</div>
+            <div style="margin-top:6px"><span class="char-count ok">25 chars heading &nbsp;|&nbsp; 82 chars text</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="icon-card">
+        <div class="icon-card-header">
+          Icon 4
+          <span style="font-weight:400;color:#999">Heading max 40 chars · Text max 130 chars</span>
+        </div>
+        <div class="icon-pair">
+          <div class="icon-col">
+            <div class="original-heading">Scalable content workflows</div>
+            <div style="font-size:13px;color:#666;margin-top:2px">Simplify localization, approvals, and distribution across channels.</div>
+            <div style="margin-top:6px"><span class="char-count ok">26 chars heading</span></div>
+          </div>
+          <div class="icon-col">
+            <div class="heading">Scalable distribution</div>
+            <div style="font-size:13px;color:#333;margin-top:2px">Deliver assets to any channel automatically — no manual reformatting or chasing approvals.</div>
+            <div style="margin-top:6px"><span class="char-count ok">21 chars heading &nbsp;|&nbsp; 91 chars text</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ "MORE THAN TRADITIONAL DAM" ═══════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Section — "More than traditional DAM"</div>
+
+    <div class="copy-block">
+      <div class="col-label">
+        H2 + paragraph
+        <span class="constraint">H2 max 55 chars. Para max 200 chars.</span>
+      </div>
+      <div class="col-original">
+        <div class="col-header">Original</div>
+        <div class="copy-text h2">More than traditional DAM</div>
+        <div class="copy-text" style="margin-top:12px">If you're exploring ImageVault, Papirfly offers a broader platform that combines Digital Asset Management, templated content creation, and scalable brand management.</div>
+        <span class="char-count warn">Para: 163 chars — OK but mentions TCC</span>
+      </div>
+      <div class="col-revised">
+        <div class="col-header">Revised</div>
+        <div class="copy-text h2">More than traditional DAM</div>
+        <div class="copy-text" style="margin-top:12px">Exploring ImageVault? Papirfly combines enterprise Digital Asset Management and branded portals — giving teams a smarter way to find, govern, and distribute assets at scale.</div>
+        <span class="char-count ok">171 chars</span>
+        <div class="change-note" style="margin-top:10px"><strong>Change:</strong> Removed "templated content creation" — not relevant to David Digital's evaluation criteria. Replaced with DAM + branded portals: the actual upgrade story.</div>
+      </div>
+    </div>
+
+    <!-- H3 block 1 -->
+    <div class="copy-block">
+      <div class="col-label">
+        H3 + body
+        <span class="constraint">H3 max 40 chars. Para max 180 chars. Max 4 bullets at 50–90 chars each.</span>
+      </div>
+      <div class="col-original">
+        <div class="col-header">Original</div>
+        <div class="copy-text h3">Built for modern marketing teams</div>
+        <div class="copy-text" style="margin-top:10px">Teams exploring ImageVault often discover they need more than asset storage — including content creation, localization, and scalable brand control.</div>
+        <div class="copy-text" style="margin-top:10px">
+          <ul>
+            <li>Create localized content without design bottlenecks</li>
+            <li>Keep every market aligned to brand standards</li>
+            <li>Improve visibility and control across assets</li>
+            <li>Scale campaigns faster across teams and regions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-revised">
+        <div class="col-header">Revised</div>
+        <div class="copy-text h3">Built for modern brand teams</div>
+        <span class="char-count ok" style="margin-bottom:8px;display:inline-block">28 chars</span>
+        <div class="copy-text">Teams evaluating ImageVault often find they need more than storage — they need a portal that surfaces the right assets to the right people, keeps content on-brand, and scales without extra headcount.</div>
+        <span class="char-count ok">197 chars</span>
+        <div class="copy-text" style="margin-top:10px">
+          <ul>
+            <li>Find and reuse assets faster with AI-powered search</li>
+            <li>Surface approved assets for every team and market</li>
+            <li>Govern brand compliance from one central hub</li>
+            <li>Distribute to any channel without manual reformatting</li>
+          </ul>
+        </div>
+        <div class="change-note" style="margin-top:10px"><strong>Change:</strong> Bullets rewritten around David Digital's pains: findability, governance, distribution. Removed "create localized content" and "scale campaigns" — those are Mark Marketing/Localization bullets.</div>
+      </div>
+    </div>
+
+    <!-- H3 block 2 -->
+    <div class="copy-block">
+      <div class="col-label">
+        H3 + body (second panel)
+        <span class="constraint">H3 max 40 chars. Para max 180 chars.</span>
+      </div>
+      <div class="col-original">
+        <div class="col-header">Original</div>
+        <div class="copy-text h3">Designed for modern content workflows</div>
+        <div class="copy-text" style="margin-top:10px">Teams evaluating DAM platforms increasingly need solutions that support content creation, localization, distribution, and brand governance in one connected workflow.</div>
+      </div>
+      <div class="col-revised">
+        <div class="col-header">Revised</div>
+        <div class="copy-text h3">Designed for modern content workflows</div>
+        <span class="char-count ok" style="margin-bottom:8px;display:inline-block">38 chars</span>
+        <div class="copy-text">Teams evaluating DAM platforms increasingly need a solution that connects asset governance, brand guidelines, and distribution in one place — not three separate tools.</div>
+        <span class="char-count ok">165 chars</span>
+        <div class="change-note" style="margin-top:10px"><strong>Change:</strong> Removed "content creation" and "localization" from the list of needs. Replaced with "asset governance, brand guidelines, and distribution" — the three things David actually evaluates on.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ QUOTES ═══════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">Quotes section — unchanged</div>
+    <div class="quotes-row">
+      <div class="quote-card">
+        <div class="quote-card-header">BMW Northern Europe</div>
+        <div class="quote-card-body">"Unified communication and the seamless sharing of assets from one single location keeps our dealers on-brand in all the material they use."</div>
+        <div class="quote-card-attribution">Brand Director / CMO, BMW Northern Europe</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-card-header">XXL</div>
+        <div class="quote-card-body">"We now produce social, video, and print content at a scale we never thought possible."</div>
+        <div class="quote-card-attribution">XXL</div>
+      </div>
+    </div>
+    <div class="change-note" style="margin-top:12px"><strong>Note:</strong> The BMW quote is the stronger David Digital proof point — it's about asset governance and consistency, not production volume. Consider leading with BMW and making it the featured/larger quote if the template supports it.</div>
+  </div>
+
+  <!-- ═══════════════════════════════ CTA SECTION ═══════════════════════════════ -->
+  <div class="section">
+    <div class="section-label">CTA section</div>
+
+    <div class="copy-block">
+      <div class="col-label">
+        H2 + paragraph + CTA
+        <span class="constraint">H2 max 55 chars. Para max 150 chars.</span>
+      </div>
+      <div class="col-original">
+        <div class="col-header">Original</div>
+        <div class="copy-text h2">Looking for more than Digital Asset Management?</div>
+        <div class="copy-text" style="margin-top:10px">See how Papirfly combines DAM, on-brand content creation, and brand management in one scalable platform.</div>
+        <div class="copy-text" style="margin-top:10px;font-weight:600">→ Book a personalised demo</div>
+      </div>
+      <div class="col-revised">
+        <div class="col-header">Revised</div>
+        <div class="copy-text h2">Looking for more than Digital Asset Management?</div>
+        <span class="char-count ok" style="margin-bottom:8px;display:inline-block">48 chars</span>
+        <div class="copy-text">See how Papirfly combines enterprise DAM and brand portals to give every team a single source of truth — and the control to use it.</div>
+        <span class="char-count ok">130 chars</span>
+        <div class="copy-text" style="margin-top:10px;font-weight:600">→ Book a personalised demo</div>
+        <div class="change-note" style="margin-top:10px"><strong>Change:</strong> Removed "on-brand content creation" from the CTA paragraph. Replaced with "brand portals" and "single source of truth" — landing the DAM + Portal upgrade story right at the conversion point.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ RATIONALE ═══════════════════════════════ -->
+  <div class="rationale">
+    <h2>Why these changes work for David Digital</h2>
+    <div class="rationale-grid">
+      <div class="rationale-item">
+        <h3>The original brief's persona problem</h3>
+        <p>The original copy leads with "create, localize, distribute" — that's the Localization use case, written for Mark Marketing. David Digital is a Digital Asset Manager evaluating DAM platforms, not a marketing manager trying to speed up campaign production.</p>
+      </div>
+      <div class="rationale-item">
+        <h3>The upgrade story: DAM + Brand Portal</h3>
+        <p>The model is the Brandpad LP — acknowledge where the visitor is coming from, validate that choice, then show what more looks like. Here that's: ImageVault = asset storage. Papirfly = enterprise DAM + branded portals. One connected system, not three tools.</p>
+      </div>
+      <div class="rationale-item">
+        <h3>David's actual evaluation criteria</h3>
+        <p>Per the skill: David cares about a single source of truth, AI-powered findability, enterprise governance (access control, versioning, compliance), and automated distribution. Every revised bullet and paragraph maps to one of these.</p>
+      </div>
+      <div class="rationale-item">
+        <h3>What wasn't changed</h3>
+        <p>H1, CTA button text, H2 for the icons section, and both quote attributions are unchanged — they're already working. The BMW quote is particularly strong for this persona and could be promoted to lead quote position.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
