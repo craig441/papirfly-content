@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Why Papirfly: the DAM and content suite for global brands</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --midnight: #2b0a5b;
+    --midnight-90: #3a1a6e;
+    --blood: #ff5757;
+    --pure: #473deb;
+    --maya: #aed3ff;
+    --pink: #ffadb9;
+    --bg: #ffffff;
+    --ink: #1a0840;
+    --muted: #6b647c;
+    --line: #ece8f3;
+    --soft: #f7f5fb;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Inter','BR Sonoma',Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+  }
+  a{color:var(--pure);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .container{max-width:1180px;margin:0 auto;padding:0 32px}
+
+  /* Mockup banner */
+  .mock-banner{
+    background:var(--soft);
+    border-bottom:1px solid var(--line);
+    color:var(--muted);
+    font-size:12px;
+    padding:10px 0;
+    text-align:center;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+  }
+  .mock-banner strong{color:var(--midnight)}
+
+  /* Nav */
+  nav{
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+    padding:18px 0;
+    position:sticky;top:0;z-index:10;
+  }
+  .nav-row{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .logo{
+    font-weight:800;color:var(--midnight);font-size:24px;letter-spacing:-.02em;
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo-mark{
+    width:28px;height:28px;border-radius:6px;background:var(--midnight);
+    display:inline-block;
+    position:relative;
+  }
+  .logo-mark::before{
+    content:"";position:absolute;inset:6px 6px 12px 6px;border:2px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);
+  }
+  .nav-links{display:flex;gap:28px;color:var(--ink);font-weight:500;font-size:14px}
+  .nav-links a{color:var(--ink)}
+  .nav-links a.active{color:var(--midnight);font-weight:700}
+  .btn-primary{
+    background:var(--midnight);color:#fff;padding:12px 22px;border-radius:999px;
+    font-weight:600;font-size:14px;border:0;cursor:pointer;
+    transition:background .2s;
+  }
+  .btn-primary:hover{background:var(--midnight-90);text-decoration:none;color:#fff}
+  .btn-ghost{
+    background:transparent;color:var(--midnight);padding:12px 22px;border-radius:999px;
+    font-weight:600;font-size:14px;border:1.5px solid var(--midnight);cursor:pointer;
+  }
+
+  /* Hero */
+  .hero{
+    background:linear-gradient(180deg,#fff 0%, var(--soft) 100%);
+    padding:80px 0 56px;
+    text-align:center;
+  }
+  .eyebrow{
+    display:inline-block;
+    background:var(--maya);color:var(--midnight);
+    font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:6px 14px;border-radius:999px;margin-bottom:24px;
+  }
+  h1.hero-h1{
+    font-size:64px;line-height:1.05;font-weight:800;letter-spacing:-.025em;
+    color:var(--midnight);margin:0 auto 24px;max-width:900px;
+  }
+  h1 .accent{color:var(--blood)}
+  .hero-sub{
+    max-width:760px;margin:0 auto;color:var(--muted);font-size:19px;line-height:1.6;
+  }
+  .hero-cta{margin-top:36px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* Stats */
+  .stats{padding:48px 0;background:#fff}
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .stat{
+    text-align:left;
+    padding:32px 28px;
+    border-radius:20px;
+    background:var(--soft);
+    border:1px solid var(--line);
+  }
+  .stat .num{
+    font-size:64px;line-height:1;font-weight:800;color:var(--midnight);letter-spacing:-.04em;
+    display:block;margin-bottom:8px;
+  }
+  .stat:nth-child(2) .num{color:var(--blood)}
+  .stat:nth-child(3) .num{color:var(--pure)}
+  .stat .label{font-weight:700;color:var(--midnight);font-size:17px;display:block;margin-bottom:8px}
+  .stat .desc{color:var(--muted);font-size:14px;line-height:1.5}
+
+  /* Intro block */
+  .intro{padding:72px 0 24px;background:#fff}
+  .intro-wrap{max-width:880px;margin:0 auto;text-align:center}
+  .intro-wrap h2{
+    font-size:34px;line-height:1.2;font-weight:800;letter-spacing:-.02em;color:var(--midnight);
+    margin:0 0 24px;
+  }
+  .intro-wrap p{font-size:19px;line-height:1.65;color:var(--ink);margin:0 0 16px}
+  .heritage{
+    margin-top:32px;display:inline-block;
+    background:#fff;border:1px solid var(--line);
+    padding:14px 22px;border-radius:999px;
+    font-size:14px;color:var(--muted);
+  }
+  .heritage strong{color:var(--midnight)}
+
+  /* Pillars */
+  .pillars{padding:88px 0;background:var(--soft)}
+  .section-head{text-align:center;margin-bottom:56px}
+  .section-head .kicker{
+    color:var(--blood);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+    margin-bottom:12px;display:block;
+  }
+  .section-head h2{
+    font-size:42px;line-height:1.1;font-weight:800;letter-spacing:-.02em;color:var(--midnight);
+    margin:0 auto;max-width:760px;
+  }
+  .pillar-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .pillar{
+    background:#fff;border:1px solid var(--line);border-radius:24px;
+    padding:36px;display:flex;flex-direction:column;gap:14px;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .pillar:hover{transform:translateY(-4px);box-shadow:0 24px 48px rgba(43,10,91,.08)}
+  .pillar-num{
+    width:44px;height:44px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--maya);color:var(--midnight);
+    font-weight:800;font-size:18px;
+  }
+  .pillar:nth-child(2) .pillar-num{background:var(--pink);color:var(--midnight)}
+  .pillar:nth-child(3) .pillar-num{background:#e9e6ff;color:var(--pure)}
+  .pillar:nth-child(4) .pillar-num{background:#ffe1e1;color:var(--blood)}
+  .pillar h3{
+    font-size:22px;line-height:1.25;font-weight:800;color:var(--midnight);margin:8px 0 4px;letter-spacing:-.01em;
+  }
+  .pillar p{color:var(--muted);font-size:15.5px;line-height:1.6;margin:0}
+
+  /* Logo wall */
+  .logos{padding:64px 0;background:#fff;text-align:center}
+  .logos .label{
+    font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;
+    margin-bottom:28px;
+  }
+  .logo-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:48px 64px}
+  .logo-row .lg{
+    font-family:'Inter',Arial,sans-serif;font-weight:800;font-size:24px;color:#9a93ad;letter-spacing:.02em;
+    opacity:.85;
+  }
+
+  /* Comparison */
+  .compare{padding:88px 0;background:#fff;border-top:1px solid var(--line)}
+  .compare-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+  }
+  .compare h2{
+    font-size:36px;line-height:1.15;font-weight:800;color:var(--midnight);letter-spacing:-.02em;margin:0 0 16px;
+  }
+  .compare p.lede{color:var(--muted);font-size:17px;line-height:1.6;margin:0 0 24px}
+  .compare ul{list-style:none;padding:0;margin:0 0 24px}
+  .compare li{
+    padding:14px 0;border-bottom:1px dashed var(--line);
+    display:flex;gap:12px;align-items:flex-start;
+  }
+  .compare li:last-child{border-bottom:0}
+  .check{
+    flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--blood);
+    color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;
+    margin-top:1px;
+  }
+  .placeholder-note{
+    background:var(--soft);border-left:4px solid var(--blood);border-radius:0 12px 12px 0;
+    padding:18px 22px;font-size:14px;color:var(--muted);
+  }
+  .placeholder-note strong{color:var(--midnight)}
+
+  /* Awards */
+  .awards{padding:88px 0;background:var(--midnight);color:#fff;text-align:center}
+  .awards .kicker{color:var(--pink)}
+  .awards h2{
+    font-size:36px;line-height:1.2;font-weight:800;letter-spacing:-.02em;color:#fff;
+    max-width:760px;margin:0 auto 18px;
+  }
+  .awards .sub{color:#cfc6e4;max-width:820px;margin:0 auto 36px;font-size:16px;line-height:1.6}
+  .badges{display:flex;flex-wrap:wrap;justify-content:center;gap:18px}
+  .badge{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+    padding:12px 18px;border-radius:12px;font-size:13px;color:#fff;font-weight:600;
+    display:flex;align-items:center;gap:10px;
+  }
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--blood)}
+  .badge.g2 .dot{background:#ff492c}
+  .badge.cap .dot{background:#ff9d2b}
+  .badge.usr .dot{background:var(--maya)}
+  .badge.sup .dot{background:var(--pink)}
+
+  /* Quotes */
+  .quotes{padding:88px 0;background:var(--soft)}
+  .quote-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .quote{
+    background:#fff;border:1px solid var(--line);border-radius:20px;padding:32px;
+    display:flex;flex-direction:column;gap:18px;
+  }
+  .quote p.q{font-size:17px;line-height:1.55;color:var(--ink);margin:0;font-weight:500}
+  .quote .who{display:flex;align-items:center;gap:14px}
+  .quote .who .avatar{
+    width:44px;height:44px;border-radius:50%;background:var(--maya);
+    color:var(--midnight);font-weight:800;display:flex;align-items:center;justify-content:center;
+  }
+  .quote .who .name{font-weight:700;color:var(--midnight);font-size:14px;line-height:1.3}
+  .quote .who .role{color:var(--muted);font-size:13px}
+
+  /* Final CTA */
+  .cta-final{padding:88px 0;background:#fff}
+  .cta-card{
+    background:linear-gradient(135deg, var(--midnight) 0%, #3d1480 100%);
+    border-radius:32px;padding:64px 56px;color:#fff;
+    display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .cta-card::before{
+    content:"";position:absolute;width:300px;height:300px;border-radius:50%;
+    background:var(--blood);opacity:.18;top:-100px;right:-80px;
+  }
+  .cta-card::after{
+    content:"";position:absolute;width:200px;height:200px;border-radius:50%;
+    background:var(--pure);opacity:.25;bottom:-80px;right:120px;
+  }
+  .cta-card h2{
+    font-size:40px;line-height:1.1;font-weight:800;color:#fff;letter-spacing:-.02em;margin:0 0 24px;position:relative;z-index:2;
+  }
+  .cta-card ul{list-style:none;padding:0;margin:0 0 28px;position:relative;z-index:2}
+  .cta-card li{padding:8px 0;display:flex;gap:12px;color:#ece7f7}
+  .cta-card li::before{content:"→";color:var(--pink);font-weight:800}
+  .cta-card .btn-primary{background:#fff;color:var(--midnight);position:relative;z-index:2}
+  .cta-card .btn-primary:hover{background:var(--maya)}
+  .cta-art{position:relative;z-index:2;text-align:right;font-size:120px;line-height:1;opacity:.8}
+
+  /* Footer */
+  footer{background:#0f0428;color:#bbb1d4;padding:40px 0;font-size:13px;text-align:center}
+  footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+
+  /* Mobile */
+  @media (max-width: 820px){
+    h1.hero-h1{font-size:40px}
+    .stats-grid{grid-template-columns:1fr}
+    .pillar-grid{grid-template-columns:1fr}
+    .compare-grid{grid-template-columns:1fr;gap:24px}
+    .quote-grid{grid-template-columns:1fr}
+    .cta-card{grid-template-columns:1fr;padding:40px 28px}
+    .cta-card h2{font-size:30px}
+    .nav-links{display:none}
+    .section-head h2{font-size:30px}
+    .stat .num{font-size:52px}
+  }
+</style>
+</head>
+<body>
+
+<div class="mock-banner">
+  <strong>MOCKUP</strong> &nbsp;·&nbsp; Why Papirfly page rebuild &nbsp;·&nbsp; Replaces /reasons-why/ &nbsp;·&nbsp; H1 shown: Option 1 (recommended)
+</div>
+
+<nav>
+  <div class="container nav-row">
+    <div class="logo">
+      <span class="logo-mark"></span>
+      papirfly
+    </div>
+    <div class="nav-links">
+      <a href="#">Product Suite</a>
+      <a href="#">Solutions</a>
+      <a href="#" class="active">Why Papirfly?</a>
+      <a href="#">Customer stories</a>
+      <a href="#">Pricing</a>
+      <a href="#">Resources</a>
+    </div>
+    <button class="btn-primary">Book a demo</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">Why Papirfly</span>
+    <h1 class="hero-h1">Why <span class="accent">1,500+</span> global brands choose Papirfly</h1>
+    <p class="hero-sub">
+      The DAM and content suite trusted by global teams to keep every asset, every campaign, and every market on-brand.
+    </p>
+    <div class="hero-cta">
+      <button class="btn-primary">Book a demo</button>
+      <button class="btn-ghost">See the suite</button>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat">
+        <span class="num">80%</span>
+        <span class="label">Faster campaign launches</span>
+        <span class="desc">Bring ideas to market more quickly and stay ahead of competition.</span>
+      </div>
+      <div class="stat">
+        <span class="num">60%</span>
+        <span class="label">Lower production costs</span>
+        <span class="desc">Cut marketing spend without compromising quality.</span>
+      </div>
+      <div class="stat">
+        <span class="num">100%</span>
+        <span class="label">Consistent brand presence</span>
+        <span class="desc">Use on-brand design templates in every region, channel, and format.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="container">
+    <div class="intro-wrap">
+      <h2>One suite. Every brand asset. Every market. Always on-brand.</h2>
+      <p>
+        Papirfly is the digital asset management (DAM) and Templated Content Creation suite used by
+        1,500+ global brands and over one million users to keep every asset, every campaign, and every
+        market on-brand.
+      </p>
+      <p>
+        Teams choose Papirfly because it brings asset organization, brand governance, and templated
+        content production into one suite — so non-designers can create studio-quality content
+        without ever going off-brand.
+      </p>
+      <span class="heritage">
+        <strong>Since 2000.</strong> &nbsp;25+ years building brand and content management software.
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Why teams pick Papirfly</span>
+      <h2>Four reasons global brands choose Papirfly over the alternatives</h2>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <h3>Built for the whole team, not just designers</h3>
+        <p>
+          Most DAMs are built for asset managers. Most content tools are built for designers. Papirfly
+          is built for everyone in between — the brand manager, the regional marketer, the franchise
+          owner, the partner agency — because that's who creates most of your content. Templated
+          Content Creation lets non-designers produce studio-quality assets in minutes, with brand
+          rules locked in by default. No design files. No training. No off-brand surprises.
+        </p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <h3>Enterprise-ready by default</h3>
+        <p>
+          Global brands trust Papirfly with the content that represents them. Security and compliance
+          are configured in, not bolted on: ISO 27001, SOC 2 Type II, AES-256 encryption at rest, TLS
+          1.2+ in transit, SSO via SAML 2.0, MFA, and native directory integration with Entra ID and
+          Okta. GDPR-grade consent management, multi-tenant architecture, role-based permissions, and
+          multi-market governance come as standard.
+        </p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <h3>Proven at scale across global brands</h3>
+        <p>
+          More than 1,500 brands and over one million users rely on Papirfly every day — from BMW
+          and PepsiCo to IBM and Rolls-Royce. Brands at this scale don't choose lightly. They choose
+          Papirfly because it handles multi-brand portfolios, multi-region rollouts, and millions of
+          assets without making the work harder for the people doing it.
+        </p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <h3>A partner, not just a platform</h3>
+        <p>
+          Software is the easy part. Getting a global brand to actually adopt it is where most
+          projects stall. Papirfly's Professional Services team handles metadata strategy, template
+          builds, migration, and rollout — and stays with customers after go-live. That's why
+          Papirfly is the G2 Best Support Mid-Market leader and consistently ranks as a G2 Leader
+          across multiple categories.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO WALL -->
+<section class="logos">
+  <div class="container">
+    <div class="label">Trusted by 1,500+ brands worldwide</div>
+    <div class="logo-row">
+      <span class="lg">BMW</span>
+      <span class="lg">PepsiCo</span>
+      <span class="lg">IBM</span>
+      <span class="lg">Rolls-Royce</span>
+      <span class="lg">STIHL</span>
+      <span class="lg">O'Learys</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="compare">
+  <div class="container">
+    <div class="compare-grid">
+      <div>
+        <span style="color:var(--blood);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;">How we compare</span>
+        <h2>How Papirfly compares to other DAM and content tools</h2>
+        <p class="lede">
+          Other vendors solve one piece of the brand-and-content puzzle. Papirfly solves all of it,
+          in one suite, with the support to make it stick.
+        </p>
+        <a href="#" style="font-weight:700">See full comparison →</a>
+      </div>
+      <div>
+        <ul>
+          <li><span class="check">✓</span><span><strong>DAM + Templated Content Creation in one suite</strong> — vs DAM-only competitors</span></li>
+          <li><span class="check">✓</span><span><strong>25+ years building brand management software</strong> — vs newer entrants</span></li>
+          <li><span class="check">✓</span><span><strong>AI auto-tagging at ingestion + AI Brand Compliance Checker on roadmap</strong> — vs manual workflows</span></li>
+          <li><span class="check">✓</span><span><strong>G2 Best Support Mid-Market</strong> — adoption built in, not sold separately</span></li>
+        </ul>
+        <div class="placeholder-note">
+          <strong>v1 placeholder.</strong> Comparison points to be confirmed with product marketing.
+          Link target depends on which vs pages are live at launch (Bynder, Canto, Frontify, Brandfolder).
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="awards">
+  <div class="container">
+    <span class="kicker" style="color:var(--pink);font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:12px;">Recognition</span>
+    <h2>Recognized as a leader by customers, analysts, and review sites</h2>
+    <p class="sub">
+      Papirfly is a G2 Leader across Digital Asset Management, Mid-Market Brand Asset Management,
+      and Creative Management Platforms in Europe — and a winner of G2 Best Support Mid-Market and
+      Users Love Us. Additional recognition from Capterra, Software Advice, GetApp, Crozdesk,
+      Slashdot, and Sourceforge.
+    </p>
+    <div class="badges">
+      <div class="badge g2"><span class="dot"></span>G2 Leader · DAM</div>
+      <div class="badge sup"><span class="dot"></span>Best Support · Mid-Market</div>
+      <div class="badge usr"><span class="dot"></span>Users Love Us</div>
+      <div class="badge g2"><span class="dot"></span>Momentum Leader</div>
+      <div class="badge g2"><span class="dot"></span>Regional Leader · Europe</div>
+      <div class="badge g2"><span class="dot"></span>High Performer · Enterprise</div>
+      <div class="badge cap"><span class="dot"></span>Capterra</div>
+      <div class="badge cap"><span class="dot"></span>Software Advice</div>
+      <div class="badge cap"><span class="dot"></span>GetApp</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTES -->
+<section class="quotes">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">In their words</span>
+      <h2>What our customers say</h2>
+    </div>
+    <div class="quote-grid">
+      <div class="quote">
+        <p class="q">"Working with multiple creative agencies, dealers and internal employees across seven countries makes Papirfly's system a 'must-have' for us. Unified communication and the seamless sharing of assets from one single location keeps our dealers on-brand in all the material they use."</p>
+        <div class="who">
+          <div class="avatar">MD</div>
+          <div>
+            <div class="name">Marie Dellbrant</div>
+            <div class="role">Brand Director / CMO, BMW Northern Europe</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote">
+        <p class="q">"Papirfly is a tool that everyone feels empowered to use. We made sure folks could take the templates and build assets that are still customized but also maintain the global brand."</p>
+        <div class="who">
+          <div class="avatar" style="background:var(--pink)">SE</div>
+          <div>
+            <div class="name">Sally Elbassir</div>
+            <div class="role">Associate Manager, Global Talent Attraction &amp; Engagement, PepsiCo</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote">
+        <p class="q">"We use Papirfly to manage Rolls Royce and it does the job perfectly. The freedom you have to make it your own is incredible and stands out from the rest. I would recommend this to any brand no matter the size."</p>
+        <div class="who">
+          <div class="avatar" style="background:#e9e6ff;color:var(--pure)">MC</div>
+          <div>
+            <div class="name">Matthew C.</div>
+            <div class="role">Marketing Specialist · G2 review</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote">
+        <p class="q">"A one-stop shop for everything related to our brand — guidelines, assets, templating, and collaboration. The templating unlocks countless possibilities for high-quality assets. Our brand is more polished and consistent — while also helping us reduce costs."</p>
+        <div class="who">
+          <div class="avatar" style="background:#ffe1e1;color:var(--blood)">RS</div>
+          <div>
+            <div class="name">Roel S.</div>
+            <div class="role">G2 review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final">
+  <div class="container">
+    <div class="cta-card">
+      <div>
+        <h2>See how easy it is to create and manage content</h2>
+        <ul>
+          <li>Showcase your organized on-brand assets</li>
+          <li>Empower everyone to create and share content</li>
+          <li>Scale content creation to reach every customer</li>
+        </ul>
+        <button class="btn-primary">Book a demo</button>
+      </div>
+      <div class="cta-art">◐</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>© 2026 Papirfly — All Rights Reserved</div>
+    <div>Mockup of /why-papirfly/ — for review only</div>
+  </div>
+</footer>
+
+</body>
+</html>
